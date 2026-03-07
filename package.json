@@ -1,5 +1,5 @@
 {
-  "name": "rustlikeresult",
+  "name": "@yuyu0202/rustlikeresult",
   "version": "1.0.0",
   "description": "Rust-like Result type for TypeScript with sync/async helpers.",
   "type": "module",
