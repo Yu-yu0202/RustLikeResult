@@ -12,11 +12,11 @@ export function Ok<T>( value?: T ): Result<T | void, never> {
   }
 }
 
-export function Err<E = Error>( error: E ): Result<never, E> {
+export function Err<E = string>( error: E ): Result<never, E> {
   return Result.Err<E>(error);
 }
 
-export class Result<T, E = Error> {
+export class Result<T, E = string> {
   // Static menbers
   public static Ok<T>(): Result<void, never>
   public static Ok<T>( value: T ): Result<T, never>
@@ -36,7 +36,7 @@ export class Result<T, E = Error> {
     try {
       return Result.Ok<T>(await fn());
     } catch (e) {
-      return Result.Err(e instanceof Error ? e : new Error(String(e)));
+      return Result.Err(e instanceof Error ? e.message : String(e));
     }
   }
   
@@ -44,7 +44,7 @@ export class Result<T, E = Error> {
     try {
       return Result.Ok<T>(fn());
     } catch (e) {
-      return Result.Err(e instanceof Error ? e : new Error(String(e)));
+      return Result.Err(e instanceof Error ? e.message : String(e));
     }
   }
   
