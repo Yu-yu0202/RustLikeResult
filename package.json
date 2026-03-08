@@ -1,6 +1,6 @@
 {
   "name": "@yuyu0202/rustlikeresult",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rust-like Result type for TypeScript with sync/async helpers.",
   "type": "module",
   "main": "./dist/index.js",
