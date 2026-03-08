@@ -1,4 +1,6 @@
-import type { ResultAsync, ResultPayload, Awaitable } from "./types/index";
+import type { ResultAsync, ResultPayload, Awaitable } from "./types.ts";
+
+export type { ResultAsync, ResultPayload, Awaitable, AwaitableResult } from "./types.js";
 
 export function Ok<T>(): Result<void, never>
 export function Ok<T>( value: T ): Result<T, never>
