@@ -32,17 +32,17 @@ export class Result<T, E = string> {
     return new Result<never, E>({ ok: false, error });
   }
   
-  public static async fromAsync<T>( fn: () => Awaitable<T> ): ResultAsync<T> {
+  public static async fromAsync<T, Fn extends (...args: any[]) => Awaitable<T>>( fn: Fn, ...args: Parameters<Fn> ): ResultAsync<Awaited<T>> {
     try {
-      return Result.Ok<T>(await fn());
+      return Result.Ok<Awaited<T>>(await fn(...args));
     } catch (e) {
       return Result.Err(e instanceof Error ? e.message : String(e));
     }
   }
   
-  public static from<T>( fn: () => T ): Result<T> {
+  public static from<T, Fn extends (...args: any[]) => T>( fn: Fn, ...args: Parameters<Fn> ): Result<T> {
     try {
-      return Result.Ok<T>(fn());
+      return Result.Ok<T>(fn(...args));
     } catch (e) {
       return Result.Err(e instanceof Error ? e.message : String(e));
     }
