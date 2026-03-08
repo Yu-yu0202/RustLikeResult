@@ -2,7 +2,7 @@ import type { Result } from './index.js';
 
 export type Awaitable<T> = T | Promise<T>;
 
-export type ResultPayload<T,E> =
+export type ResultPayload<T, E> =
   | { ok: true; value: T }
   | { ok: false; error: E };
 

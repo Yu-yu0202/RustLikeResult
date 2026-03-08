@@ -43,11 +43,11 @@ export class Result<T, E = string> {
       return new Result<T, never>({ ok: true, value: value as T });
     }
   }
-
+  
   public static Err<E = Error>( error: E ): Result<never, E> {
     return new Result<never, E>({ ok: false, error });
   }
-
+  
   public static async fromAsync<T, E = string>( fn: ( ...args: any[] ) => Awaitable<T>, ...args: Parameters<typeof fn> ): ResultAsync<Awaited<T>, E> {
     try {
       return Result.Ok<Awaited<T>>(await fn(...args));
